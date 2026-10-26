@@ -1,4 +1,4 @@
-import saldoNegativo.*
+import excepciones.*
 
 class Asistente {
   const abono
@@ -7,7 +7,7 @@ class Asistente {
   
   var property dineroDisponible
 
-  const informador
+  const informante
   
   method comprarEntrada(entrada){
     if (self.saldoPositivo()){
@@ -15,7 +15,7 @@ class Asistente {
         historialDeEntradas.add(entrada)
     }
     else {
-        throw new ExceptionSaldoNegativo ()
+        throw new ExceptionSaldoNegativo()
     }
   }
 
@@ -27,15 +27,7 @@ class Asistente {
 
   method precioFinal(entrada) = entrada.precioConImpuesto() - abono.descuento(entrada.precioConImpuesto())
 
-  method entradasDelAnioPasado() = informador.entradasDelAnioPasado(self.historialDeEntradas())
+  method entradasDelAnioPasado() = informante.entradasDelAnioPasado(self.historialDeEntradas())
 
-  method bandasQueLesComproEntrada() = informador.bandasQueLesComproEntrada(self.historialDeEntradas())
-}
-
-class Vip{
-  var bonificacion
-
-  method bonificacion() = bonificacion
-
-  method descuento(precioDeEntrada) = precioDeEntrada * (100 - bonificacion)
+  method bandasQueLesComproEntrada() = informante.bandasQueLesComproEntrada(self.historialDeEntradas())
 }

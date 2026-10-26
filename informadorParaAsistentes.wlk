@@ -1,4 +1,4 @@
-object informadorParaAsistentes{
+object informateParaAsistentes{
     const hoy = new Date()
 
     method entradasDelAnioPasado(historialDeEntradas) = historialDeEntradas.map({entrada => entrada.fecha().year() == hoy.minusYears(1).year()})
