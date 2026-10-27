@@ -1,9 +1,7 @@
 class Banda{
     const nombre
 
-    const canon = 1000000
-
-    method canon() = canon
+    const property canon = 1000000
 
     method presupuesto() = self.canon() + self.gastoExtra()
 
@@ -23,12 +21,17 @@ class BandaDeRock inherits Banda{
 class BandaDeTrap inherits Banda{
     const tienenHielo
 
-    override method canon() = canon * self.popularidad()
+    override method canon() = super() * self.popularidad()
 
     override method gastoExtra() = 0
 
-    override method popularidad(){
-        if(tienenHielo) return 1000
-        else return 0
-    }
+    override method popularidad() = if(tienenHielo) 1000 else 0
+}
+
+class BandaIndie inherits Banda{
+    const cantidadDeInstrumentos
+
+    override method gastoExtra() = 500 * cantidadDeInstrumentos
+
+    override method popularidad() = 3.14 * nombre.length()
 }

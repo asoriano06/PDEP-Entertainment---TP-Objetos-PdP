@@ -1,8 +1,6 @@
 class Vip{
   var bonificacion
 
-  method bonificacion() = bonificacion
-
   method recibirBonificacion(){
     bonificacion += 1
   }

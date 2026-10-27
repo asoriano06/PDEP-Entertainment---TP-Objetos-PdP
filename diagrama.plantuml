@@ -1,0 +1,128 @@
+object productora{
+    impuesto
+    asistentes
+    bandas
+    --
+    impuesto()
+    agregarAsistenteS(unosAsistentes)
+    agregarBandas(unasBandas)
+    entradasVendidas()
+    gananciaTotal()
+    gananciaDeEntradas()
+    gastoDePresupuestos()
+    cantidadDeEntradasVendidas()
+    bandaMasPopular()
+    cantidadDeEntradasDeBanda(unaBanda)
+    bonificarAsistentesVip()
+}
+
+object fan{
+    --
+    descuento()
+    recibirBonificacion()
+}
+
+interface abono{
+    recibirBonificacion()
+    descuento(precioDeEntrada)
+}
+
+class Vip{
+    bonificacion
+    --
+    recibirBonificacion()
+    descuento(precioDeEntrada)
+}
+
+class Asistente {
+    abono
+    historialDeEntradas
+    dineroDisponible
+    --
+    abono()
+    historialDeEntradas()
+    comprarEntrada(entrada)
+    validarCompra()
+    saldoPositivo()
+    pagarEntrada(entrada)
+    precioFinal(entrada)
+    entradasDelAnioPasado()
+    bandasQueLesComproEntrada()
+}
+
+class Entrada {
+    banda
+    fecha
+    precioBase
+    impuestoCobrado
+    --
+    banda()
+    registrarCompra
+    esDelAnioPasado()
+    precioConImpuesto()
+}
+
+exception ExceptionSaldoNegativo{
+    --
+    message()
+}
+
+class Banda{
+    nombre
+    canon
+    --
+    canon()
+    presupuesto()
+    gastoExtra()
+    popularidad()
+}
+
+class BandaDeRock{
+    nombre
+    canon
+    cantidadSolosDeGuitarra
+    --
+    canon()
+    presupuesto()
+    gastoExtra()
+    popularidad()
+}
+
+class BandaDeTrap{
+    nombre
+    canon
+    tienenHielo
+    --
+    canon()
+    presupuesto()
+    gastoExtra()
+    popularidad()
+}
+
+class BandaIndie{
+    nombre
+    canon
+    cantidadDeInstrumentos
+    --
+    canon()
+    presupuesto()
+    gastoExtra()
+    popularidad()
+}
+
+Banda <|-- BandaDeRock
+Banda <|-- BandaDeTrap
+Banda <|-- BandaIndie
+
+abono <|.. Vip
+abono <|.. fan
+
+abono <-- Asistente
+Entrada "*" <-- Asistente
+ExceptionSaldoNegativo <.. Asistente
+
+Banda <-- Entrada
+productora <.. Entrada
+
+Asistente "*" <-- productora
+Banda "*" <-- productora
